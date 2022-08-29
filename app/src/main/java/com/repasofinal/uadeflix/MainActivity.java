@@ -45,5 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CrearContacto(View view) {
+        Intent i = new Intent(MainActivity.this, CrearContacto.class);
+        startActivity(i);
     }
 }

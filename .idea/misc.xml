@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/rafa/AndroidStudioProjects/UADEFLIX/app/src/main/res/layout/activity_catalogo.xml" value="0.43020833333333336" />
-        <entry key="..\:/Users/rafa/AndroidStudioProjects/UADEFLIX/app/src/main/res/layout/activity_main.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/Agustin/Documents/Github/UADEFLIX/app/src/main/res/layout/activity_catalogo.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/Agustin/Documents/Github/UADEFLIX/app/src/main/res/layout/activity_crear_contacto.xml" value="0.33" />
+        <entry key="..\:/Users/Agustin/Documents/Github/UADEFLIX/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="18" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
