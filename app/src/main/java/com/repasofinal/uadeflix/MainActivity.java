@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = findViewById(R.id.et_email);
+        email = findViewById(R.id.et_name);
         password = findViewById(R.id.et_password);
 
         email.setText("test");
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             if(email.getText().toString().equals("test") &&
             password.getText().toString().equals("1234")){
                 Toast.makeText(getApplicationContext(), "Usuario logueado!", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(MainActivity.this, Catalogo.class);
+                Intent i = new Intent(MainActivity.this, Catalog.class);
                 startActivity(i);
             }else
             {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CrearContacto(View view) {
-        Intent i = new Intent(MainActivity.this, CrearContacto.class);
+        Intent i = new Intent(MainActivity.this, SignUp.class);
         startActivity(i);
     }
 }

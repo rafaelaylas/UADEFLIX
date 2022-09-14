@@ -14,10 +14,21 @@
         android:theme="@style/Theme.UADEFLIX"
         tools:targetApi="31">
         <activity
-            android:name=".CrearContacto"
+            android:name=".Viewer"
             android:exported="false" />
         <activity
-            android:name=".Catalogo"
+            android:name=".Details"
+            android:exported="false" />
+        <activity
+            android:name=".SignIn"
+            android:exported="false"
+            android:label="@string/title_activity_log_in"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".Catalog"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
