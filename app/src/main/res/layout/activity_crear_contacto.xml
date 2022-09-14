@@ -11,12 +11,12 @@
         android:id="@+id/et_email_nc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
         android:layout_marginTop="21dp"
         android:background="#5086A5"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -24,12 +24,12 @@
         android:id="@+id/et_password_nc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="16dp"
         android:background="#5086A5"
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -75,11 +75,50 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="119dp"
         android:layout_marginTop="194dp"
         android:shadowColor="#671D1D"
         android:text="Crear Contacto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password_nc" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password_nc" >
+
+        <RadioButton
+            android:id="@+id/rb_planBasico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Plan Básico"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="458dp" />
+
+        <RadioButton
+            android:id="@+id/rb_planMedio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Plan Medio"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="458dp" />
+
+        <RadioButton
+            android:id="@+id/rb_planPremium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Plan Premium"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="458dp" />
+
+    </RadioGroup>>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
