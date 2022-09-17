@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary"
+    android:background="@color/back"
     tools:context=".SignUp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +32,10 @@
             android:id="@+id/layout_steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/secondary"
+            android:padding="20dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +44,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_personalInformation"
-                android:layout_width="300dp"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -140,7 +144,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="40dp"
                     android:background="@color/dark"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
@@ -157,9 +160,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_mail" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_paymentInformation"
-                android:layout_width="300dp"
+                android:id="@+id/layout_passwordChange"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -180,7 +184,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/et_cardNumber"
+                    android:id="@+id/et_oldPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -198,7 +202,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txt_paymentInformation" />
 
                 <EditText
-                    android:id="@+id/et_holdersName"
+                    android:id="@+id/et_newPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -214,10 +218,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_cardNumber" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_oldPassword" />
 
                 <EditText
-                    android:id="@+id/et_dueDate"
+                    android:id="@+id/et_repeatNewPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -233,14 +237,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_holdersName" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_newPassword" />
 
                 <EditText
                     android:id="@+id/et_secCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="40dp"
                     android:background="@color/dark"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
@@ -254,7 +257,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_dueDate" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_repeatNewPassword" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -359,11 +362,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="50dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_steps">
 
             <Button
                 android:id="@+id/btn_prevStep"
@@ -380,7 +383,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_nextStep"
+                android:id="@+id/btn_update"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:background="@color/secondary"
