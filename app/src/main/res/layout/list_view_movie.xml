@@ -7,7 +7,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/lviewMovie_btn_select"
         android:layout_width="128dp"
         android:layout_height="200dp"
         android:background="?android:selectableItemBackground"
@@ -19,7 +19,7 @@
     </Button>
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/lviewMovie_iv_image"
         android:layout_width="128dp"
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"

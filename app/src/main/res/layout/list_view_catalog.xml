@@ -7,7 +7,7 @@
     android:background="@color/back">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/lviewCatalog_txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -17,23 +17,22 @@
         android:textColor="@color/text"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/lviewCatalog_clay_catalogContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+        android:id="@+id/lviewCatalog_clay_catalogContainer"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
-
+        app:layout_constraintTop_toBottomOf="@+id/lviewCatalog_txt_title">
 
         <ImageView
-            android:id="@+id/btn_nav_back"
+            android:id="@+id/lviewCatalog_btn_navLeft"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -45,24 +44,24 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ScrollView
-            android:id="@+id/scrollView2"
+            android:id="@+id/lviewCatalog_sview_movies"
             android:layout_width="300dp"
             android:layout_height="200dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_nav_back"
-            app:layout_constraintEnd_toStartOf="@+id/btn_nav_next"
+            app:layout_constraintStart_toEndOf="@+id/lviewCatalog_btn_navLeft"
+            app:layout_constraintEnd_toStartOf="@+id/lviewCatalog_btn_navRight"
             app:layout_constraintTop_toTopOf="parent">
 
 
             <ListView
-                android:id="@+id/lv_movies"
+                android:id="@+id/lviewCatalog_lview_movies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </ScrollView>
 
         <ImageView
-            android:id="@+id/btn_nav_next"
+            android:id="@+id/lviewCatalog_btn_navRight"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -73,6 +72,6 @@
             app:srcCompat="@drawable/ic_navigate_next"
             tools:ignore="SpeakableTextPresentCheck" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

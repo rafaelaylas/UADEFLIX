@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/signUp_txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -25,35 +25,34 @@
             android:textColor="@color/text"
             android:textSize="48sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/layout_steps"
+            app:layout_constraintBottom_toTopOf="@+id/signUp_clay_steps"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_steps"
+            android:id="@+id/signUp_clay_steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@color/secondary"
             android:padding="20dp"
-            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_personalInformation"
+                android:id="@+id/signUp_clay_personalInformation"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/txt_personalInformation"
+                    android:id="@+id/signUp_txt_personalInformation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="1st step - Personal Information"
@@ -65,7 +64,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/et_name"
+                    android:id="@+id/signUp_et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -80,10 +79,10 @@
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_personalInformation" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_txt_personalInformation" />
 
                 <EditText
-                    android:id="@+id/et_lastName"
+                    android:id="@+id/signUp_et_lastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -99,10 +98,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_name" />
 
                 <EditText
-                    android:id="@+id/et_phone"
+                    android:id="@+id/signUp_et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -118,10 +117,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_lastName" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_lastName" />
 
                 <EditText
-                    android:id="@+id/et_mail"
+                    android:id="@+id/signUp_et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -137,10 +136,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_phone" />
 
                 <EditText
-                    android:id="@+id/et_password"
+                    android:id="@+id/signUp_et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -157,12 +156,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_mail" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_email" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_passwordChange"
+                android:id="@+id/signUp_clay_paymentInfo"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -172,7 +171,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/txt_paymentInformation"
+                    android:id="@+id/signUp_txt_paymentInformation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="2nd step - Payment Information"
@@ -184,7 +183,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/et_oldPassword"
+                    android:id="@+id/signUp_et_cardNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -199,10 +198,10 @@
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_paymentInformation" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_txt_paymentInformation" />
 
                 <EditText
-                    android:id="@+id/et_newPassword"
+                    android:id="@+id/signUp_et_holdersName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -218,10 +217,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_oldPassword" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_cardNumber" />
 
                 <EditText
-                    android:id="@+id/et_repeatNewPassword"
+                    android:id="@+id/signUp_et_dueDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -237,10 +236,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_newPassword" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_holdersName" />
 
                 <EditText
-                    android:id="@+id/et_secCode"
+                    android:id="@+id/signUp_et_secCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -257,22 +256,22 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_repeatNewPassword" />
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_et_dueDate" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_planInformation"
+                android:id="@+id/signUp_clay_planInformation"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/txt_planInformation"
+                    android:id="@+id/signUp_txt_planInformation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="3rd step - Plan Information"
@@ -284,15 +283,15 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
-                    android:id="@+id/rg_planInformation"
+                    android:id="@+id/signUp_rg_planInformation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_planInformation">
+                    app:layout_constraintTop_toBottomOf="@+id/signUp_txt_planInformation">
 
                     <RadioButton
-                        android:id="@+id/rbtn_silver"
+                        android:id="@+id/signUp_rbtn_silver"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -307,7 +306,7 @@
                         android:textStyle="bold" />
 
                     <RadioButton
-                        android:id="@+id/rbtn_gold"
+                        android:id="@+id/signUp_rbtn_gold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -322,7 +321,7 @@
                         android:textStyle="bold" />
 
                     <RadioButton
-                        android:id="@+id/rbtn_platinium"
+                        android:id="@+id/signUp_rbtn_platinium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -335,41 +334,24 @@
                         android:textColor="@color/text"
                         android:textSize="24sp"
                         android:textStyle="bold" />
-                </RadioGroup>
 
+                </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/txt_messages"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Invalid User"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/text"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_steps" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/signUp_clay_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_steps">
+            app:layout_constraintTop_toBottomOf="@+id/signUp_clay_steps">
 
             <Button
-                android:id="@+id/btn_prevStep"
+                android:id="@+id/signUp_btn_prevStep"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:background="@color/secondary"
@@ -383,7 +365,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_update"
+                android:id="@+id/signUp_btn_nextStep"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:background="@color/secondary"
@@ -395,6 +377,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

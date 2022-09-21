@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/signIn_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -24,11 +24,11 @@
             android:textColor="@color/text"
             android:textSize="48sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/layout_personalInformation"
+            app:layout_constraintBottom_toTopOf="@+id/signIn_clay_signInInfo"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_personalInformation"
+            android:id="@+id/signIn_clay_signInInfo"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/et_name"
+                android:id="@+id/signIn_et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/dark"
@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/et_password"
+                android:id="@+id/signIn_et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -73,14 +73,14 @@
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/btn_signIn"
+                app:layout_constraintBottom_toTopOf="@+id/signIn_btn_signIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_name" />
+                app:layout_constraintTop_toBottomOf="@+id/signIn_et_email" />
 
             <Button
-                android:id="@+id/btn_signIn"
+                android:id="@+id/signIn_btn_signIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/secondary"
@@ -96,7 +96,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/txt_messages"
+            android:id="@+id/signIn_txt_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-medium"
@@ -109,19 +109,18 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_personalInformation" />
+            app:layout_constraintTop_toBottomOf="@+id/signIn_clay_signInInfo" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
-            android:onClick="signUp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/btn_signUp"
+                android:id="@+id/signIn_tbtn_signUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
