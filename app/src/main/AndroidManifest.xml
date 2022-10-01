@@ -14,31 +14,38 @@
         android:theme="@style/Theme.UADEFLIX"
         tools:targetApi="31">
         <activity
-            android:name=".ChangePassword"
-            android:exported="false" />
+            android:name=".activities.ChangePassword"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
-            android:name=".PaymentInfo"
-            android:exported="false" />
+            android:name=".activities.PaymentInfo"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
-            android:name=".Viewer"
-            android:exported="false" />
+            android:name=".activities.Viewer"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
-            android:name=".Details"
-            android:exported="false" />
+            android:name=".activities.Details"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
-            android:name=".SignIn"
+            android:name=".activities.SignIn"
             android:exported="false"
             android:label="@string/title_activity_log_in"
             android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
-            android:name=".SignUp"
-            android:exported="false" />
+            android:name=".activities.SignUp"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
-            android:name=".Catalog"
-            android:exported="false" />
+            android:name=".activities.Catalog"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

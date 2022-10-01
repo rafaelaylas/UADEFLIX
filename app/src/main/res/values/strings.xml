@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">UADEFLIX</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_log_in">UADEFLIX</string>
+    <string name="first_fragment_label">UADEFLIX</string>
+    <string name="second_fragment_label">UADEFLIX</string>
 
 </resources>

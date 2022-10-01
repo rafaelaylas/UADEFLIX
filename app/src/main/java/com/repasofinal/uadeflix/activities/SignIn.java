@@ -1,4 +1,4 @@
-package com.repasofinal.uadeflix;
+package com.repasofinal.uadeflix.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.repasofinal.uadeflix.R;
 
 public class SignIn extends AppCompatActivity {
 

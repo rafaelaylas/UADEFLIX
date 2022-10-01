@@ -1,8 +1,10 @@
-package com.repasofinal.uadeflix;
+package com.repasofinal.uadeflix.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.repasofinal.uadeflix.R;
 
 public class Viewer extends AppCompatActivity {
 

@@ -6,19 +6,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
+
+import com.repasofinal.uadeflix.activities.SignIn;
+import com.repasofinal.uadeflix.logic.Manager;
 
 public class MainActivity extends AppCompatActivity {
 
     public static Context context;
+    public static Manager manager;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         context = getApplicationContext();
+        manager = new Manager();
 
         Intent intent = new Intent(MainActivity.this, SignIn.class);
         Handler handler = new Handler();
