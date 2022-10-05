@@ -9,7 +9,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.R;
+import com.repasofinal.uadeflix.logic.Movie;
+import com.squareup.picasso.Picasso;
 
 public class Details extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class Details extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        Movie movie = MainActivity.manager.GetCurrentMovie();
 
         ibtn_back = (ImageButton) findViewById(R.id.details_ibtn_back);
         iv_image = (ImageView) findViewById(R.id.details_iv_image);
@@ -47,5 +51,15 @@ public class Details extends AppCompatActivity {
 
         ibtn_back.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { finish(); } });
         iv_play.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { startActivity(new Intent(Details.this, Viewer.class)); } });
+
+        Picasso.get().load(movie.getImageSrc()).placeholder(R.drawable.ic_movie_placeholder).into(iv_image);
+        txt_title.setText(movie.getTitle());
+        txt_description.setText(movie.getDescription());
+        txt_year.setText(movie.getYear());
+        txt_duration.setText(movie.getDuration());
+        txt_cast.setText(movie.getCast());
+        txt_writer.setText(movie.getWriter());
+        txt_genres.setText(movie.getGenre());
+        txt_rating.setText(movie.getRank());
     }
 }

@@ -9,7 +9,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.R;
+import com.repasofinal.uadeflix.support.CatalogListAdapter;
+import com.repasofinal.uadeflix.support.Helper;
+
+import java.util.ArrayList;
 
 public class Catalog extends AppCompatActivity {
 
@@ -47,8 +52,16 @@ public class Catalog extends AppCompatActivity {
         clay_closeMenu.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { CloseMenu(); } });
 
         clay_menuContainer.setVisibility(View.GONE);
+
+        MainActivity.manager.UpdateMovies();
+        UpdateCatalog();
     }
 
+    private void UpdateCatalog() {
+        ArrayList<com.repasofinal.uadeflix.logic.Catalog> items = Helper.listToArrayList(MainActivity.manager.GetCatalogs());
+        CatalogListAdapter adapter = new CatalogListAdapter(this, R.layout.list_view_catalog, items);
+        lview_catalog.setAdapter(adapter);
+    }
     private void OpenMenu() { clay_menuContainer.setVisibility(View.VISIBLE); }
     private void CloseMenu() { clay_menuContainer.setVisibility(View.GONE); }
     private void ChangePlan() {}
