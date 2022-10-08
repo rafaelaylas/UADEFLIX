@@ -49,8 +49,9 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-condensed"
                 android:hint="Email or phone number"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:padding="20dp"
+                android:textColor="@color/text"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
                 android:textStyle="italic"
@@ -68,8 +69,9 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-condensed"
                 android:hint="Password"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:padding="20dp"
+                android:textColor="@color/text"
                 android:textColorHint="@color/text"
                 android:textSize="20sp"
                 android:textStyle="italic"
@@ -103,15 +105,17 @@
             android:text="Invalid User"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/text"
+            android:textColor="#F44336"
             android:textSize="24sp"
             android:textStyle="italic"
-            android:visibility="gone"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signIn_clay_signInInfo" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
@@ -137,6 +141,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signIn_clay_loadingScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/signIn_tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Loading..."
+            android:textColor="@color/text"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

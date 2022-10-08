@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.R;
+import com.repasofinal.uadeflix.support.ActionV;
 import com.repasofinal.uadeflix.support.CatalogListAdapter;
 import com.repasofinal.uadeflix.support.Helper;
 
@@ -26,6 +27,7 @@ public class Catalog extends AppCompatActivity {
     private ConstraintLayout clay_btnPassword;
     private ConstraintLayout clay_btnSignOut;
     private ConstraintLayout clay_closeMenu;
+    private ConstraintLayout clay_loadingScreen;
 
     private ListView lview_catalog;
 
@@ -41,6 +43,7 @@ public class Catalog extends AppCompatActivity {
         clay_btnPassword = (ConstraintLayout) findViewById(R.id.catalog_clay_btnPassword);
         clay_btnSignOut = (ConstraintLayout) findViewById(R.id.catalog_clay_btnSignOut);
         clay_closeMenu = (ConstraintLayout) findViewById(R.id.catalog_clay_closeMenu);
+        clay_loadingScreen = (ConstraintLayout) findViewById(R.id.catalog_clay_loadingScreen);
 
         lview_catalog = (ListView) findViewById(R.id.catalog_lview_catalog);
 
@@ -52,6 +55,7 @@ public class Catalog extends AppCompatActivity {
         clay_closeMenu.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { CloseMenu(); } });
 
         clay_menuContainer.setVisibility(View.GONE);
+        clay_loadingScreen.setVisibility(View.GONE);
 
         MainActivity.manager.UpdateMovies();
         UpdateCatalog();
@@ -67,5 +71,11 @@ public class Catalog extends AppCompatActivity {
     private void ChangePlan() {}
     private void ChangePaymentSettings() { startActivity(new Intent(Catalog.this, PaymentInfo.class)); }
     private void ChangePassword() { startActivity(new Intent(Catalog.this, ChangePassword.class)); }
-    private void SignOut() { finish(); }
+    private void SignOut() {
+        clay_loadingScreen.setVisibility(View.VISIBLE);
+        MainActivity.manager.SignOut(
+                new ActionV() { @Override public void Invoke() { finish(); } },
+                new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } },
+                new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } }
+        ); }
 }
