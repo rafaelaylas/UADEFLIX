@@ -23,7 +23,7 @@ public class User {
     }
     public User(String email, String password) {
         this.email = email;
-        this.password = setPassword(password);
+        this.password = password;
 
         Log.d("register", this.password);
     }
@@ -32,9 +32,10 @@ public class User {
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.password = setPassword(password);
+        this.password = password;
         this.paymentInfo = paymentInfo;
         this.plan = plan;
+        Log.d("register", this.password);
     }
 
     public String getToken() { return token; }
