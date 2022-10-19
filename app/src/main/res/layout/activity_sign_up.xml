@@ -169,7 +169,7 @@
                 android:id="@+id/signUp_clay_paymentInfo"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -273,7 +273,7 @@
                 android:id="@+id/signUp_clay_planInformation"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -312,7 +312,9 @@
                         android:textAlignment="center"
                         android:textColor="@color/text"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold" >
+
+                    </RadioButton>
 
                     <RadioButton
                         android:id="@+id/signUp_rbtn_gold"
@@ -388,7 +390,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

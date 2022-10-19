@@ -1,10 +1,10 @@
-package com.repasofinal.uadeflix.backend;
+package com.repasofinal.uadeflix.backend.sso;
 
 import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Body_Register {
+public class Body_SSO_Register {
     @SerializedName("nombre")
     private String nombre;
     @SerializedName("apellido")
@@ -18,7 +18,7 @@ public class Body_Register {
     @SerializedName("admin")
     private String admin;
 
-    public Body_Register(String nombre, String apellido, String email, String password) {
+    public Body_SSO_Register(String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

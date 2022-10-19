@@ -1,8 +1,8 @@
-package com.repasofinal.uadeflix.backend;
+package com.repasofinal.uadeflix.backend.sso;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Response_Logout {
+public class Response_SSO_Logout {
     @SerializedName("error")
     private String error;
     @SerializedName("ok")

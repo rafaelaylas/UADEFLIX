@@ -56,8 +56,9 @@
 
         <ImageView
             android:id="@+id/details_iv_image"
-            android:layout_width="match_parent"
+            android:layout_width="356dp"
             android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
             android:background="@color/dark"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -76,8 +77,7 @@
             android:id="@+id/details_sview_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_margin="20dp">
 
             <LinearLayout
                 android:id="@+id/details_lay_details"

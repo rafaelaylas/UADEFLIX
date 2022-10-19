@@ -1,8 +1,8 @@
-package com.repasofinal.uadeflix.backend;
+package com.repasofinal.uadeflix.backend.sso;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Body_Login {
+public class Body_SSO_Login {
     @SerializedName("email")
     private String email;
     @SerializedName("password")
@@ -10,7 +10,7 @@ public class Body_Login {
     @SerializedName("tenant")
     private String tenant = "Web_Mobile";
 
-    public Body_Login(String email, String password) {
+    public Body_SSO_Login(String email, String password) {
         this.email = email;
         this.password = password;
     }

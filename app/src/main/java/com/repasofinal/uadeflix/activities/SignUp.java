@@ -20,6 +20,8 @@ import com.repasofinal.uadeflix.logic.Card;
 import com.repasofinal.uadeflix.logic.User;
 import com.repasofinal.uadeflix.support.ActionV;
 
+import java.util.ArrayList;
+
 public class SignUp extends AppCompatActivity {
 
     private ConstraintLayout clay_personalInformation;
@@ -266,11 +268,12 @@ public class SignUp extends AppCompatActivity {
         selectedButton.setChecked(true);
         selectedButton.setBackgroundColor(getResources().getColor(R.color.back));
     }
-    private PLAN getPlan() {
-        if(rbtn_silver.isChecked()){ return PLAN.SILDVER; }
-        if(rbtn_gold.isChecked()){ return PLAN.GOLD; }
-        if(rbtn_platinium.isChecked()){ return PLAN.PLATINUM; }
-        return PLAN.SILDVER;
+    private PLAN[] getPlan() {
+        ArrayList<PLAN> plan = new ArrayList<>();
+        if(rbtn_silver.isChecked()){ plan.add(PLAN.SILDVER); }
+        if(rbtn_gold.isChecked()){ plan.add(PLAN.GOLD); }
+        if(rbtn_platinium.isChecked()){ plan.add(PLAN.PLATINUM); }
+        return (PLAN[]) plan.toArray();
     }
 
     private void submitRequest() {
