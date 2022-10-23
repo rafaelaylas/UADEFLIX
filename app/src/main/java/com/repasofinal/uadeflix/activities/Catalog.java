@@ -73,8 +73,7 @@ public class Catalog extends AppCompatActivity {
         Refresh();
     }
 
-    private void Refresh()
-    {
+    private void Refresh() {
         tv_loading.setText("Loading...");
         clay_loadingScreen.setVisibility(View.VISIBLE);
         MainActivity.manager.UpdateMovies(

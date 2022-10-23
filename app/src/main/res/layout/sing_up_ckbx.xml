@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signUp_clay_ckbxs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/signUp_ckbx"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:button="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintStart_toStartOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintTop_toTopOf="@+id/signUp_clay_ckbxs" />
+
+        <ImageView
+            android:id="@+id/singUp_ckbx_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintStart_toStartOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintTop_toTopOf="@+id/signUp_clay_ckbxs"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/signUp_ckbx_clay_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintStart_toEndOf="@+id/singUp_ckbx_icon"
+            app:layout_constraintTop_toTopOf="@+id/signUp_clay_ckbxs">
+
+            <TextView
+                android:id="@+id/singUp_ckbx_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Title"
+                android:textAlignment="center"
+                android:textColor="@color/text"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/signUp_ckbx_clay_details"
+                app:layout_constraintTop_toTopOf="@+id/signUp_ckbx_clay_details" />
+
+            <TextView
+                android:id="@+id/singUp_ckbx_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="188dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Small description of the suscription plan"
+                android:textColor="@color/text"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/signUp_ckbx_clay_details"
+                app:layout_constraintTop_toBottomOf="@+id/singUp_ckbx_title" />
+
+            <TextView
+                android:id="@+id/singUp_ckbx_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="$ 0000.00"
+                android:textAlignment="textEnd"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/signUp_ckbx_clay_details"
+                app:layout_constraintTop_toBottomOf="@+id/singUp_ckbx_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

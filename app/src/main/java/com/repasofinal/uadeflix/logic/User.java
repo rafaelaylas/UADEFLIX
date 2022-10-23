@@ -1,8 +1,5 @@
 package com.repasofinal.uadeflix.logic;
 
-import android.util.Log;
-
-import com.repasofinal.uadeflix.enums.PLAN;
 import com.repasofinal.uadeflix.support.Helper;
 
 import org.json.JSONException;
@@ -20,18 +17,18 @@ public class User {
     private String email;
     private String password;
     private Card paymentInfo;
-    private PLAN[] plan;
+    private Subscription[] suscriptions;
 
     public User(String[] tokens) {
         this.token = tokens[0];
-        this.refreshToken = tokens[1];
+        setRefreshToken(tokens[1]);
 
         String[] decodedJWT = Helper.DecodeJWT(token);
         try {
             JSONObject obj = new JSONObject(decodedJWT[1]);
             this.name = obj.getString("nombre");
             this.email = obj.getString("email");
-            this.exp = new Date((long)obj.getInt("exp")*1000);
+            setExpirationDate(obj.getInt("exp"));
         }
         catch (JSONException e) { e.printStackTrace(); }
     }
@@ -39,14 +36,14 @@ public class User {
         this.email = email;
         this.password = password;
     }
-    public User(String name, String lastName, String phone, String email, String password, Card paymentInfo, PLAN[] plan) {
+    public User(String name, String lastName, String phone, String email, String password, Card paymentInfo, Subscription[] plan) {
         this.name = name;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.password = password;
         this.paymentInfo = paymentInfo;
-        this.plan = plan;
+        this.suscriptions = plan;
     }
 
     public String getToken() { return token; }
@@ -57,11 +54,9 @@ public class User {
     public String getEmail() { return email; }
     public String getPassword() { return password; }
     public Card getPaymentInfo() { return paymentInfo; }
-    public PLAN[] getPlan() { return plan; }
+    public Subscription[] getSuscriptions() { return suscriptions; }
 
     public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
-    public Boolean CheckExpiration() {
-        if(exp.before(new Date())) { return true; }
-        return false;
-    }
+    public void setExpirationDate(int date) { this.exp = new Date((long)date*1000); }
+    public Boolean CheckExpiration() { if(exp.before(new Date())) { return true; } return false; }
 }

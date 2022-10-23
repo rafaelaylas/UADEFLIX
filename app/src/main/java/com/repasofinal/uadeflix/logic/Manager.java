@@ -3,12 +3,13 @@ package com.repasofinal.uadeflix.logic;
 import android.util.Log;
 
 import com.repasofinal.uadeflix.backend.cms.CMS_Controller;
-import com.repasofinal.uadeflix.backend.cms.Response_CMS_Carrousel;
 import com.repasofinal.uadeflix.backend.cms.Response_CMS_GetCarrouseles;
 import com.repasofinal.uadeflix.backend.sso.SSO_Controller;
 import com.repasofinal.uadeflix.backend.sso.Response_SSO_Login;
 import com.repasofinal.uadeflix.backend.sso.Response_SSO_Logout;
 import com.repasofinal.uadeflix.backend.sso.Response_SSO_Register;
+import com.repasofinal.uadeflix.backend.suscriptions.Response_Subscriptions_Paquete;
+import com.repasofinal.uadeflix.backend.suscriptions.Subscriptions_Controller;
 import com.repasofinal.uadeflix.support.ActionV;
 import com.repasofinal.uadeflix.support.StaticData;
 
@@ -21,6 +22,7 @@ import retrofit2.Response;
 public class Manager {
     private User currentUser;
     private Movie currentMovie;
+    private Subscription[] subscriptions;
     private List<Catalog> catalogs;
 
     public void SignIn(User newUser, ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
@@ -111,4 +113,30 @@ public class Manager {
     public void SetCurrentMovie(Movie movie){ currentMovie = movie; }
     public Movie GetCurrentMovie() { return currentMovie; }
     public List<Catalog> GetCatalogs() { return catalogs; }
+
+    public Subscription[] GetSubscriptions() { return subscriptions; }
+    public void UpdateSubscriptions(ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
+        Subscriptions_Controller.GetPaquetes().enqueue(new Callback<Response_Subscriptions_Paquete[]>() {
+            @Override
+            public void onResponse(Call<Response_Subscriptions_Paquete[]> call, Response<Response_Subscriptions_Paquete[]> response) {
+                Response_Subscriptions_Paquete[] body = response.body();
+                if (body != null) {
+                    Log.d("Response","Subscriptions Updated");
+                    subscriptions = new Subscription[body.length];
+                    for (int i = 0; i < body.length; i++) { subscriptions[i] = body[i].ToSubscription(); }
+                    if(onStatusOk != null) { onStatusOk.Invoke(); }
+                } else {
+                    Log.d("Response","Subscriptions Not Updated");
+                    if(onStatusError != null) { onStatusError.Invoke(); }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_Subscriptions_Paquete[]> call, Throwable t) {
+                Log.d("Response","Fail to get subscriptions");
+                if(onStatusFail != null) { onStatusFail.Invoke(); }
+            }
+        });
+    }
+
 }

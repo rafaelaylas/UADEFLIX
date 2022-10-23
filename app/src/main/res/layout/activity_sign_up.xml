@@ -291,62 +291,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioGroup
-                    android:id="@+id/signUp_rg_planInformation"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="350dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signUp_txt_planInformation">
 
-                    <RadioButton
-                        android:id="@+id/signUp_rbtn_silver"
+                    <LinearLayout
+                        android:id="@+id/signUp_rlay_planInformation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/primary"
-                        android:button="@null"
-                        android:fontFamily="sans-serif-medium"
-                        android:padding="20dp"
-                        android:text="Silver"
-                        android:textAlignment="center"
-                        android:textColor="@color/text"
-                        android:textSize="24sp"
-                        android:textStyle="bold" >
+                        android:orientation="vertical" />
 
-                    </RadioButton>
+                </ScrollView>
 
-                    <RadioButton
-                        android:id="@+id/signUp_rbtn_gold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/primary"
-                        android:button="@null"
-                        android:fontFamily="sans-serif-medium"
-                        android:padding="20dp"
-                        android:text="Gold"
-                        android:textAlignment="center"
-                        android:textColor="@color/text"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/signUp_rbtn_platinium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/primary"
-                        android:button="@null"
-                        android:fontFamily="sans-serif-medium"
-                        android:padding="20dp"
-                        android:text="Platinium"
-                        android:textAlignment="center"
-                        android:textColor="@color/text"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

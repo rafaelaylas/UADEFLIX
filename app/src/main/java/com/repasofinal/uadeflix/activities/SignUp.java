@@ -7,16 +7,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.R;
-import com.repasofinal.uadeflix.enums.PLAN;
 import com.repasofinal.uadeflix.logic.Card;
+import com.repasofinal.uadeflix.logic.Subscription;
 import com.repasofinal.uadeflix.logic.User;
 import com.repasofinal.uadeflix.support.ActionV;
 
@@ -38,9 +42,8 @@ public class SignUp extends AppCompatActivity {
     private EditText et_secCode;
 
     private ConstraintLayout clay_planInformation;
-    private RadioButton rbtn_silver;
-    private RadioButton rbtn_gold;
-    private RadioButton rbtn_platinium;
+    private LinearLayout planLayout;
+    private ArrayList<CheckBox> checkBoxes;
 
     private Button btn_prevStep;
     private Button btn_nextStep;
@@ -56,23 +59,9 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        clay_personalInformation = (ConstraintLayout) findViewById(R.id.signUp_clay_personalInformation);
-        et_name = (EditText) findViewById(R.id.signUp_et_name);
-        et_lastName = (EditText) findViewById(R.id.signUp_et_lastName);
-        et_phone = (EditText) findViewById(R.id.signUp_et_phone);
-        et_email = (EditText) findViewById(R.id.signUp_et_email);
-        et_password = (EditText) findViewById(R.id.signUp_et_password);
-
-        clay_paymentInfo = (ConstraintLayout) findViewById(R.id.signUp_clay_paymentInfo);
-        et_cardNumber = (EditText) findViewById(R.id.signUp_et_cardNumber);
-        et_holdersName = (EditText) findViewById(R.id.signUp_et_holdersName);
-        et_dueDate = (EditText) findViewById(R.id.signUp_et_dueDate);
-        et_secCode = (EditText) findViewById(R.id.signUp_et_secCode);
-
-        clay_planInformation = (ConstraintLayout) findViewById(R.id.signUp_clay_planInformation);
-        rbtn_silver = (RadioButton) findViewById(R.id.signUp_rbtn_silver);
-        rbtn_gold = (RadioButton) findViewById(R.id.signUp_rbtn_gold);
-        rbtn_platinium = (RadioButton) findViewById(R.id.signUp_rbtn_platinium);
+        initPersonalInfo();
+        initPaymentInfo();
+        initPlanInfo();
 
         btn_prevStep = (Button) findViewById(R.id.signUp_btn_prevStep);
         btn_nextStep = (Button) findViewById(R.id.signUp_btn_nextStep);
@@ -85,49 +74,45 @@ public class SignUp extends AppCompatActivity {
         btn_prevStep.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { prevStep(); } });
         btn_nextStep.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { nextStep(); } });
 
-        rbtn_silver.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { selectPlan(rbtn_silver); } });
-        rbtn_gold.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { selectPlan(rbtn_gold); } });
-        rbtn_platinium.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { selectPlan(rbtn_platinium); } });
+        clay_loadingScreen.setVisibility(View.GONE);
+        clay_userCreatedScreen.setVisibility(View.GONE);
+        clay_errorScreen.setVisibility(View.GONE);
 
-        et_cardNumber.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
-                et_cardNumber.setTextColor(getResources().getColor(R.color.text));
-                et_cardNumber.setHintTextColor(getResources().getColor(R.color.text));
-            }
-            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override public void afterTextChanged(Editable editable) {
-                if(et_cardNumber.getText().length() > 16) { et_cardNumber.setText(et_cardNumber.getText().subSequence(0, 16)); }
-            }
-        });
-        et_holdersName.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                et_holdersName.setHintTextColor(getResources().getColor(R.color.text));
-            }
-            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override public void afterTextChanged(Editable editable) {
-                if(et_holdersName.getText().length() > 16) { et_holdersName.setText(et_holdersName.getText().subSequence(0, 16)); }
-            }
-        });
-        et_dueDate.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                et_dueDate.setTextColor(getResources().getColor(R.color.text));
-                et_dueDate.setHintTextColor(getResources().getColor(R.color.text));
-            }
-            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override public void afterTextChanged(Editable editable) {
-                if(et_dueDate.getText().length() > 4) { et_dueDate.setText(et_dueDate.getText().subSequence(0, 4)); }
-            }
-        });
-        et_secCode.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                et_secCode.setTextColor(getResources().getColor(R.color.text));
-                et_secCode.setHintTextColor(getResources().getColor(R.color.text));
-            }
-            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
-            @Override public void afterTextChanged(Editable editable) {
-                if(et_secCode.getText().length() > 3) { et_secCode.setText(et_secCode.getText().subSequence(0, 3)); }
-            }
-        });
+        initDev();
+        setStep();
+    }
+
+    private void prevStep() { currentStep--; setStep(); }
+    private void nextStep() { currentStep++; setStep(); }
+    private void setStep() {
+        switch (currentStep){
+            case 0: finish(); break;
+            case 1: goToPersonalInfo(); break;
+            case 2: if(checkPersonalInfo()) { goToPaymentInfo(); } else { currentStep--; } break;
+            case 3: if(checkPaymentInfo()) { goToPlanInfo(); } else { currentStep--; } break;
+            case 4: submitRequest(); break;
+        }
+    }
+
+    private void initDev() {
+        et_name.setText("mobile.test");
+        et_lastName.setText("amobile.test");
+        et_phone.setText("123");
+        et_email.setText("1234567890123123");
+        et_password.setText("1234567890123123");
+        et_cardNumber.setText("1234567890123456");
+        et_holdersName.setText("1234567890123456");
+        et_dueDate.setText("1212");
+        et_secCode.setText("123");
+    }
+
+    private void initPersonalInfo() {
+        clay_personalInformation = (ConstraintLayout) findViewById(R.id.signUp_clay_personalInformation);
+        et_name = (EditText) findViewById(R.id.signUp_et_name);
+        et_lastName = (EditText) findViewById(R.id.signUp_et_lastName);
+        et_phone = (EditText) findViewById(R.id.signUp_et_phone);
+        et_email = (EditText) findViewById(R.id.signUp_et_email);
+        et_password = (EditText) findViewById(R.id.signUp_et_password);
 
         et_name.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
@@ -169,26 +154,75 @@ public class SignUp extends AppCompatActivity {
             @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
             @Override public void afterTextChanged(Editable editable) { }
         });
+    }
+    private void initPaymentInfo() {
+        clay_paymentInfo = (ConstraintLayout) findViewById(R.id.signUp_clay_paymentInfo);
+        et_cardNumber = (EditText) findViewById(R.id.signUp_et_cardNumber);
+        et_holdersName = (EditText) findViewById(R.id.signUp_et_holdersName);
+        et_dueDate = (EditText) findViewById(R.id.signUp_et_dueDate);
+        et_secCode = (EditText) findViewById(R.id.signUp_et_secCode);
 
-        clay_loadingScreen.setVisibility(View.GONE);
-        clay_userCreatedScreen.setVisibility(View.GONE);
-        clay_errorScreen.setVisibility(View.GONE);
+        et_cardNumber.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+                et_cardNumber.setTextColor(getResources().getColor(R.color.text));
+                et_cardNumber.setHintTextColor(getResources().getColor(R.color.text));
+            }
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override public void afterTextChanged(Editable editable) {
+                if(et_cardNumber.getText().length() > 16) { et_cardNumber.setText(et_cardNumber.getText().subSequence(0, 16)); }
+            }
+        });
+        et_holdersName.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                et_holdersName.setHintTextColor(getResources().getColor(R.color.text));
+            }
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override public void afterTextChanged(Editable editable) {
+                if(et_holdersName.getText().length() > 16) { et_holdersName.setText(et_holdersName.getText().subSequence(0, 16)); }
+            }
+        });
+        et_dueDate.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                et_dueDate.setTextColor(getResources().getColor(R.color.text));
+                et_dueDate.setHintTextColor(getResources().getColor(R.color.text));
+            }
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override public void afterTextChanged(Editable editable) {
+                if(et_dueDate.getText().length() > 4) { et_dueDate.setText(et_dueDate.getText().subSequence(0, 4)); }
+            }
+        });
+        et_secCode.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                et_secCode.setTextColor(getResources().getColor(R.color.text));
+                et_secCode.setHintTextColor(getResources().getColor(R.color.text));
+            }
+            @Override public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+            @Override public void afterTextChanged(Editable editable) {
+                if(et_secCode.getText().length() > 3) { et_secCode.setText(et_secCode.getText().subSequence(0, 3)); }
+            }
+        });
+    }
+    private void initPlanInfo() {
+        clay_planInformation = (ConstraintLayout) findViewById(R.id.signUp_clay_planInformation);
+        planLayout = (LinearLayout) findViewById(R.id.signUp_rlay_planInformation);
 
-        selectPlan(rbtn_silver);
-        setStep();
+        MainActivity.manager.UpdateSubscriptions(
+                new ActionV() { @Override public void Invoke() {
+                    Subscription[] subscriptions = MainActivity.manager.GetSubscriptions();
+                    LayoutInflater inflater = LayoutInflater.from(SignUp.this);
+                    checkBoxes = new ArrayList<CheckBox>();
+                    for(int i = 0; i < subscriptions.length; i++)
+                    {
+                        View newView = createRBTN(subscriptions[i], inflater);
+                        planLayout.addView(newView);
+                        checkBoxes.add(newView.findViewById(R.id.signUp_ckbx));
+                    }
+                } },
+                new ActionV() { @Override public void Invoke() { } },
+                new ActionV() { @Override public void Invoke() { } }
+        );
     }
 
-    private void prevStep() { currentStep--; setStep(); }
-    private void nextStep() { currentStep++; setStep(); }
-    private void setStep() {
-        switch (currentStep){
-            case 0: finish(); break;
-            case 1: goToPersonalInfo(); break;
-            case 2: if(checkPersonalInfo()) { goToPaymentInfo(); } else { currentStep--; } break;
-            case 3: if(checkPaymentInfo()) { goToPlanInfo(); } else { currentStep--; } break;
-            case 4: submitRequest(); break;
-        }
-    }
     private void goToPersonalInfo() {
         clay_personalInformation.setVisibility(View.VISIBLE);
         clay_paymentInfo.setVisibility(View.GONE);
@@ -205,6 +239,15 @@ public class SignUp extends AppCompatActivity {
         btn_prevStep.setText("Back");
         btn_nextStep.setText("Last");
     }
+    private void goToPlanInfo() {
+        clay_personalInformation.setVisibility(View.GONE);
+        clay_paymentInfo.setVisibility(View.GONE);
+        clay_planInformation.setVisibility(View.VISIBLE);
+
+        btn_prevStep.setText("Back");
+        btn_nextStep.setText("Sign Up");
+    }
+
     private Boolean checkPersonalInfo() {
         Boolean result = true;
 
@@ -248,32 +291,41 @@ public class SignUp extends AppCompatActivity {
         return result;
     }
 
-    private void goToPlanInfo() {
-        clay_personalInformation.setVisibility(View.GONE);
-        clay_paymentInfo.setVisibility(View.GONE);
-        clay_planInformation.setVisibility(View.VISIBLE);
-
-        btn_prevStep.setText("Back");
-        btn_nextStep.setText("Sign Up");
+    private void selectPlan(CheckBox checkBox) {
+        if(checkBox.isChecked()) { checkBox.setBackgroundColor(getResources().getColor(R.color.back)); }
+        else { checkBox.setBackgroundColor(getResources().getColor(R.color.primary)); }
+        getPlan();
     }
-    private void selectPlan(RadioButton selectedButton) {
-        rbtn_silver.setChecked(false);
-        rbtn_gold.setChecked(false);
-        rbtn_platinium.setChecked(false);
+    private Subscription[] getPlan() {
+        ArrayList<Subscription> plan = new ArrayList<>();
+        Subscription[] subscriptions = MainActivity.manager.GetSubscriptions();
 
-        rbtn_silver.setBackgroundColor(getResources().getColor(R.color.primary));
-        rbtn_gold.setBackgroundColor(getResources().getColor(R.color.primary));
-        rbtn_platinium.setBackgroundColor(getResources().getColor(R.color.primary));
-
-        selectedButton.setChecked(true);
-        selectedButton.setBackgroundColor(getResources().getColor(R.color.back));
+        for(int i = 0; i < checkBoxes.size(); i++) {
+            if(checkBoxes.get(i).isChecked()) {
+                plan.add(subscriptions[i]);
+                Log.d("Response", subscriptions[i].GetTitle());
+            }
+        }
+        Subscription[] result = new Subscription[plan.size()];
+        for (int i = 0; i < plan.size(); i++) { result[i] = plan.get(i); }
+        return result;
     }
-    private PLAN[] getPlan() {
-        ArrayList<PLAN> plan = new ArrayList<>();
-        if(rbtn_silver.isChecked()){ plan.add(PLAN.SILDVER); }
-        if(rbtn_gold.isChecked()){ plan.add(PLAN.GOLD); }
-        if(rbtn_platinium.isChecked()){ plan.add(PLAN.PLATINUM); }
-        return (PLAN[]) plan.toArray();
+    private View createRBTN(Subscription subscription, LayoutInflater inflater) {
+        View newRBTN = inflater.inflate(R.layout.sing_up_ckbx, null);
+
+        CheckBox checkBox = (CheckBox) newRBTN.findViewById(R.id.signUp_ckbx);
+        ImageView icon = (ImageView) newRBTN.findViewById(R.id.singUp_ckbx_icon);
+
+        TextView title = (TextView) newRBTN.findViewById(R.id.singUp_ckbx_title);
+        TextView description = (TextView) newRBTN.findViewById(R.id.singUp_ckbx_description);
+        TextView price = (TextView) newRBTN.findViewById(R.id.singUp_ckbx_price);
+
+        checkBox.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { selectPlan(checkBox); } });
+        title.setText(subscription.GetTitle());
+        description.setText(subscription.GetDescription());
+        price.setText("$ " + subscription.GetPrice());
+
+        return newRBTN;
     }
 
     private void submitRequest() {
