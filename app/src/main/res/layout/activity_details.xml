@@ -20,7 +20,7 @@
             android:id="@+id/details_ibtn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/secondary"
+            android:backgroundTint="@color/alpha"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

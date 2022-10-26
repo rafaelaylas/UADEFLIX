@@ -1,7 +1,9 @@
 package com.repasofinal.uadeflix.logic;
 
 public class Movie {
-    private String imageSrc;
+    private int id;
+    private String imageWideSrc;
+    private String imagePosterSrc;
     private String title;
     private String description;
     private String year;
@@ -13,8 +15,10 @@ public class Movie {
     private String rank;
     private String videoSrc;
 
-    public Movie(String imageSrc, String title, String description, String year, String duration, String director, String cast, String writer, String genre, String rank, String videoSrc) {
-        this.imageSrc = imageSrc;
+    public Movie(int id, String imagePosterSrc, String imageWideSrc, String title, String description, String year, String duration, String director, String cast, String writer, String genre, String rank, String videoSrc) {
+        this.id = id;
+        this.imagePosterSrc = imagePosterSrc;
+        this.imageWideSrc = imageWideSrc;
         this.title = title;
         this.description = description;
         this.year = year;
@@ -27,7 +31,9 @@ public class Movie {
         this.videoSrc = videoSrc;
     }
 
-    public String getImageSrc() { return imageSrc; }
+    public int getId() { return id; }
+    public String getImagePosterSrc() { return imagePosterSrc; }
+    public String getImageWideSrc() { return imageWideSrc; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public String getYear() { return year; }

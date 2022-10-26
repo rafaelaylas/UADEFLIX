@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.R;
+import com.repasofinal.uadeflix.logic.Manager;
 import com.repasofinal.uadeflix.logic.Movie;
+import com.repasofinal.uadeflix.support.ActionV;
 import com.squareup.picasso.Picasso;
 
 public class Details extends AppCompatActivity {
@@ -50,9 +52,9 @@ public class Details extends AppCompatActivity {
         txt_rating = (TextView) findViewById(R.id.details_txt_ratingInfo);
 
         ibtn_back.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { finish(); } });
-        iv_play.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { startActivity(new Intent(Details.this, Viewer.class)); } });
+        iv_play.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { WatchMovie(); } });
 
-        Picasso.get().load(movie.getImageSrc()).placeholder(R.drawable.ic_movie_placeholder).into(iv_image);
+        Picasso.get().load(movie.getImageWideSrc()).placeholder(R.drawable.ic_movie_placeholder).into(iv_image);
         txt_title.setText(movie.getTitle());
         txt_description.setText(movie.getDescription());
         txt_year.setText(movie.getYear());
@@ -61,5 +63,14 @@ public class Details extends AppCompatActivity {
         txt_writer.setText(movie.getWriter());
         txt_genres.setText(movie.getGenre());
         txt_rating.setText(movie.getRank());
+    }
+
+    private void WatchMovie(){
+        MainActivity.manager.CanViewCurrentMovie(
+                new ActionV() { @Override public void Invoke() { } },
+                new ActionV() { @Override public void Invoke() { } },
+                new ActionV() { @Override public void Invoke() { } }
+        );
+        startActivity(new Intent(Details.this, Viewer.class));
     }
 }

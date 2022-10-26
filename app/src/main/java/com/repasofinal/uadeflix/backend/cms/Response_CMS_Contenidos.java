@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 import com.repasofinal.uadeflix.logic.Movie;
 
 public class Response_CMS_Contenidos {
+    @SerializedName("id")
+    private int id;
     @SerializedName("title")
     private String title;
     @SerializedName("description")
@@ -24,9 +26,12 @@ public class Response_CMS_Contenidos {
     private Response_CMS_IdItem MaturityRating;
     @SerializedName("urlImage")
     private String urlImage;
+    @SerializedName("verticalUrlImage")
+    private String verticalUrlImage;
     @SerializedName("urlVideo")
     private String urlVideo;
 
+    public int getId() { return id; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public Integer getYear() { return year; }
@@ -37,12 +42,13 @@ public class Response_CMS_Contenidos {
     public Response_CMS_IdItem[] getGenres() { return genres; }
     public Response_CMS_IdItem getMaturityRating() { return MaturityRating; }
     public String getUrlImage() { return urlImage; }
+    public String getVerticalUrlImage() { return verticalUrlImage; }
     public String getUrlVideo() { return urlVideo; }
 
     public Movie ToMovie(){
         String genresStr = "";
         for ( Response_CMS_IdItem item : genres ) { genresStr += item.getDescription() + ", "; }
         genresStr = genresStr.substring(0, genresStr.length() - 2);
-        return new Movie(urlImage, title, description, year.toString(), duration.toString(), director, cast, writer, genresStr, MaturityRating.getDescription(), urlVideo);
+        return new Movie(id, verticalUrlImage, urlImage, title, description, year.toString(), duration.toString(), director, cast, writer, genresStr, MaturityRating.getDescription(), urlVideo);
     }
 }

@@ -138,5 +138,26 @@ public class Manager {
             }
         });
     }
+    public void CanViewCurrentMovie(ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
+        Subscriptions_Controller.CanViewFilm(currentUser, currentMovie).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Log.d("Response",response.toString());
+                Boolean body = response.body();
+                if (body != null) {
+                    Log.d("Response","Response Ok: " + body);
+                    if(onStatusOk != null) { onStatusOk.Invoke(); }
+                } else {
+                    Log.d("Response","Response Not Ok");
+                    if(onStatusError != null) { onStatusError.Invoke(); }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Log.d("Response","Fail to get response");
+                if(onStatusFail != null) { onStatusFail.Invoke(); }
+            }
+        });
+    }
 }

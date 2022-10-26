@@ -5,7 +5,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CMS_Controller {
-    public static final String BASE_URL_CMS = "https://uade-ia-cms.herokuapp.com/api/mocks/";
+    public static final String BASE_URL_CMS = "https://uade-ia-cms.herokuapp.com/api/";
     private static Retrofit retrofit_CMS = null;
 
     public static Retrofit getCMS_Client() {

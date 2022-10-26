@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,7 +54,7 @@ public class CatalogListAdapter extends ArrayAdapter<Catalog> {
     private View createMovieView(Movie movie, LayoutInflater inflater) {
         View newMovieView = inflater.inflate(R.layout.list_view_movie, null);
         ImageView image = (ImageView) newMovieView.findViewById(R.id.lviewMovie_iv_image);
-        Picasso.get().load(movie.getImageSrc()).placeholder(R.drawable.ic_movie_placeholder).into(image);
+        Picasso.get().load(movie.getImagePosterSrc()).placeholder(R.drawable.ic_movie_placeholder).into(image);
 
         newMovieView.findViewById(R.id.lviewMovie_btn_select).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
