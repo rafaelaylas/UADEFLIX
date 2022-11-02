@@ -102,14 +102,21 @@ public class Catalog extends AppCompatActivity {
     }
     private void OpenMenu() { clay_menuContainer.setVisibility(View.VISIBLE); }
     private void CloseMenu() { clay_menuContainer.setVisibility(View.GONE); }
-    private void ChangePlan() {}
+    private void ChangePlan() {
+        MainActivity.manager.RefreshUser(MainActivity.manager.GetCurrentUser().getRefreshToken(),
+                new ActionV() { @Override public void Invoke() { } },
+                new ActionV() { @Override public void Invoke() { } },
+                new ActionV() { @Override public void Invoke() { } }
+        ); }
     private void ChangePaymentSettings() { startActivity(new Intent(Catalog.this, PaymentInfo.class)); }
     private void ChangePassword() { startActivity(new Intent(Catalog.this, ChangePassword.class)); }
     private void SignOut() {
         clay_loadingScreen.setVisibility(View.VISIBLE);
         MainActivity.manager.SignOut(
-                new ActionV() { @Override public void Invoke() { finish(); } },
+                new ActionV() { @Override public void Invoke() { startActivity(new Intent(Catalog.this, SignIn.class)); finish(); } },
                 new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } },
                 new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } }
         ); }
+
+
 }

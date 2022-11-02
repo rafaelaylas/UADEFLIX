@@ -1,5 +1,7 @@
 package com.repasofinal.uadeflix.logic;
 
+import android.util.Log;
+
 import com.repasofinal.uadeflix.support.Helper;
 
 import org.json.JSONException;
@@ -57,6 +59,11 @@ public class User {
     public Subscription[] getSuscriptions() { return suscriptions; }
 
     public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
-    public void setExpirationDate(int date) { this.exp = new Date((long)date*1000); }
-    public Boolean CheckExpiration() { if(exp.before(new Date())) { return true; } return false; }
+    public void setExpirationDate(int date) { this.exp = new Date((long)(date-600)*1000); }
+    public Boolean CheckExpiration()
+    {
+        Log.d("Response","Exp Date: " + exp + "/ now: " + new Date());
+        if(exp.before(new Date())) { return false; }
+        return true;
+    }
 }

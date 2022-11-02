@@ -1,7 +1,12 @@
 package com.repasofinal.uadeflix.logic;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
+import android.os.Handler;
 import android.util.Log;
 
+import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.backend.cms.CMS_Controller;
 import com.repasofinal.uadeflix.backend.cms.Response_CMS_GetCarrouseles;
 import com.repasofinal.uadeflix.backend.sso.SSO_Controller;
@@ -33,8 +38,16 @@ public class Manager {
                     Log.d("Response","Logged in");
                     String[] tokens = new String[2];
                     tokens[0] = body.getToken();
-                    tokens[1] = response.headers().get("Set-Cookie").split(";")[0].split("=")[1];
+                    tokens[1] = response.headers().get("Set-Cookie");
+                    //tokens[1] = response.headers().get("Set-Cookie").split(";")[0].split("=")[1];
                     currentUser = new User(tokens);
+
+                    SharedPreferences.Editor editor = MainActivity.getContext().getSharedPreferences("Uadeflix", MODE_PRIVATE).edit();
+                    editor.putString("session", currentUser.getRefreshToken());
+                    editor.apply();
+
+                    AutomaticTokenRefresh();
+
                     if(onStatusOk != null) { onStatusOk.Invoke(); }
                 } else {
                     Log.d("Response","Not logged in");
@@ -48,12 +61,15 @@ public class Manager {
         });
     }
     public void SignOut(ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
-        SSO_Controller.SignOut().enqueue(new Callback<Response_SSO_Logout>() {
+        SSO_Controller.SignOut(currentUser.getRefreshToken()).enqueue(new Callback<Response_SSO_Logout>() {
             @Override public void onResponse(Call<Response_SSO_Logout> call, Response<Response_SSO_Logout> response) {
                 Response_SSO_Logout body = response.body();
                 if (body != null) {
                     Log.d("Response","Logged out");
                     currentUser = null;
+                    SharedPreferences.Editor editor = MainActivity.getContext().getSharedPreferences("Uadeflix", MODE_PRIVATE).edit();
+                    editor.putString("session", null);
+                    editor.apply();
                     if(onStatusOk != null) { onStatusOk.Invoke(); }
                 } else {
                     Log.d("Response","Not logged out");
@@ -80,6 +96,29 @@ public class Manager {
             }
             @Override public void onFailure(Call<Response_SSO_Register> call, Throwable t) {
                 Log.d("Response","Fail to create user");
+                if(onStatusFail != null) { onStatusFail.Invoke(); }
+            }
+        });
+    }
+    public void RefreshUser(String refreshToken, ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
+        SSO_Controller.RefreshUser(refreshToken).enqueue(new Callback<Response_SSO_Login>() {
+            @Override public void onResponse(Call<Response_SSO_Login> call, Response<Response_SSO_Login> response) {
+                Response_SSO_Login body = response.body();
+                if (body != null) {
+                    Log.d("Response","User token refreshed");
+                    String[] tokens = new String[2];
+                    tokens[0] = body.getToken();
+                    //tokens[1] = response.headers().get("Set-Cookie");
+                    tokens[1] = refreshToken;
+                    currentUser = new User(tokens);
+                    if(onStatusOk != null) { onStatusOk.Invoke(); }
+                } else {
+                    Log.d("Response","User token not refreshed");
+                    if(onStatusError != null) { onStatusError.Invoke(); }
+                }
+            }
+            @Override public void onFailure(Call<Response_SSO_Login> call, Throwable t) {
+                Log.d("Response","Fail to refresh token");
                 if(onStatusFail != null) { onStatusFail.Invoke(); }
             }
         });
@@ -159,5 +198,27 @@ public class Manager {
                 if(onStatusFail != null) { onStatusFail.Invoke(); }
             }
         });
+    }
+
+    public void AutomaticTokenRefresh() {
+        new Handler().postDelayed(new Runnable() { public void run() {
+            if(currentUser == null) {
+                Log.d("Response","User Logged Out");
+                return;
+            }
+            if(currentUser.CheckExpiration()) {
+                Log.d("Response","Token Not Expired");
+                AutomaticTokenRefresh();
+                return;
+            }
+            Log.d("Response","Token Expired");
+
+            RefreshUser(
+                currentUser.getRefreshToken(),
+                new ActionV() { @Override public void Invoke() { AutomaticTokenRefresh(); } },
+                new ActionV() { @Override public void Invoke() { } },
+                new ActionV() { @Override public void Invoke() { } }
+            );
+        } }, 300000);
     }
 }

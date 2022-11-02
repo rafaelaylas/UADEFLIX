@@ -14,6 +14,7 @@ public class SSO_Controller {
     }
 
     public static Call<Response_SSO_Login> SignIn(String email, String password) { return getSSO_Client().create(SSO_Services.class).Login(new Body_SSO_Login(email, password)); }
-    public static Call<Response_SSO_Logout> SignOut() { return getSSO_Client().create(SSO_Services.class).Logout(); }
+    public static Call<Response_SSO_Logout> SignOut(String refreshToken) { return getSSO_Client().create(SSO_Services.class).Logout(refreshToken); }
+    public static Call<Response_SSO_Login> RefreshUser(String refreshToken) { return getSSO_Client().create(SSO_Services.class).Refresh(refreshToken); }
     public static Call<Response_SSO_Register> SignUp(String name, String lastName, String email, String password) { return getSSO_Client().create(SSO_Services.class).Register(new Body_SSO_Register(name, lastName, email, password)); }
 }

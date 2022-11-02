@@ -252,7 +252,7 @@ public class SignUp extends AppCompatActivity {
         Boolean result = true;
 
         if(et_email.getText().length() < 8) { et_email.setTextColor(getResources().getColor(R.color.error)); result = false; }
-        if(et_password.getText().length() < 12) { et_password.setTextColor(getResources().getColor(R.color.error)); result = false; }
+        if(et_password.getText().length() < 8) { et_password.setTextColor(getResources().getColor(R.color.error)); result = false; }
 
         if(et_name.getText().length() == 0) { et_name.setHintTextColor(getResources().getColor(R.color.error)); result = false; }
         if(et_lastName.getText().length() == 0) { et_lastName.setHintTextColor(getResources().getColor(R.color.error)); result = false; }

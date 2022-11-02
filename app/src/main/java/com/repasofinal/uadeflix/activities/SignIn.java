@@ -60,6 +60,7 @@ public class SignIn extends AppCompatActivity {
                         et_email.setText("");
                         et_password.setText("");
                         startActivity(new Intent(SignIn.this, Catalog.class));
+                        finish();
                     }
                 },
                 new ActionV() { @Override public void Invoke() {
