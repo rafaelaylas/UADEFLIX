@@ -1,9 +1,11 @@
 package com.repasofinal.uadeflix.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,6 +34,10 @@ public class Details extends AppCompatActivity {
     private TextView txt_genres;
     private TextView txt_rating;
 
+
+    private TextView txt_error;
+    private ConstraintLayout clay_loadingScreen;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
@@ -51,6 +57,9 @@ public class Details extends AppCompatActivity {
         txt_genres = (TextView) findViewById(R.id.details_txt_genresInfo);
         txt_rating = (TextView) findViewById(R.id.details_txt_ratingInfo);
 
+        txt_error = (TextView) findViewById(R.id.details_txt_error);
+        clay_loadingScreen = (ConstraintLayout) findViewById(R.id.details_clay_loadingScreen);
+
         ibtn_back.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { finish(); } });
         iv_play.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { WatchMovie(); } });
 
@@ -63,14 +72,34 @@ public class Details extends AppCompatActivity {
         txt_writer.setText(movie.getWriter());
         txt_genres.setText(movie.getGenre());
         txt_rating.setText(movie.getRank());
+
+        clay_loadingScreen.setVisibility(View.GONE);
+        txt_error.setVisibility(View.GONE);
     }
 
     private void WatchMovie(){
+        clay_loadingScreen.setVisibility(View.VISIBLE);
         MainActivity.manager.CanViewCurrentMovie(
-                new ActionV() { @Override public void Invoke() { } },
-                new ActionV() { @Override public void Invoke() { } },
-                new ActionV() { @Override public void Invoke() { } }
+                new ActionV() { @Override public void Invoke() {
+                    clay_loadingScreen.setVisibility(View.GONE);
+                    txt_error.setVisibility(View.GONE);
+                    startActivity(new Intent(Details.this, Viewer.class));
+                }},
+                new ActionV() { @Override public void Invoke() {
+                    clay_loadingScreen.setVisibility(View.GONE);
+                    txt_error.setText("Please check your subscriptions to watch this movie");
+                    txt_error.setVisibility(View.VISIBLE);
+                } },
+                new ActionV() { @Override public void Invoke() {
+                    clay_loadingScreen.setVisibility(View.GONE);
+                    txt_error.setText("Connection Error");
+                    txt_error.setVisibility(View.VISIBLE);
+                } },
+                new ActionV() { @Override public void Invoke() {
+                    clay_loadingScreen.setVisibility(View.GONE);
+                    txt_error.setText("Connection Fail");
+                    txt_error.setVisibility(View.VISIBLE);
+                } }
         );
-        startActivity(new Intent(Details.this, Viewer.class));
     }
 }

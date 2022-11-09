@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/signUp_clay_ckbxs"
+        android:id="@+id/sub_clay_ckbxs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -17,40 +17,40 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <CheckBox
-            android:id="@+id/signUp_ckbx"
+            android:id="@+id/sub_ckbx"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:button="@null"
-            app:layout_constraintBottom_toBottomOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintEnd_toEndOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintStart_toStartOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintTop_toTopOf="@+id/signUp_clay_ckbxs" />
+            app:layout_constraintBottom_toBottomOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintEnd_toEndOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintStart_toStartOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintTop_toTopOf="@+id/sub_clay_ckbxs" />
 
         <ImageView
-            android:id="@+id/singUp_ckbx_icon"
+            android:id="@+id/sub_ckbx_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintStart_toStartOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintTop_toTopOf="@+id/signUp_clay_ckbxs"
+            app:layout_constraintBottom_toBottomOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintStart_toStartOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintTop_toTopOf="@+id/sub_clay_ckbxs"
             tools:srcCompat="@tools:sample/avatars" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/signUp_ckbx_clay_details"
+            android:id="@+id/sub_ckbx_clay_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintEnd_toEndOf="@+id/signUp_clay_ckbxs"
-            app:layout_constraintStart_toEndOf="@+id/singUp_ckbx_icon"
-            app:layout_constraintTop_toTopOf="@+id/signUp_clay_ckbxs">
+            app:layout_constraintBottom_toBottomOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintEnd_toEndOf="@+id/sub_clay_ckbxs"
+            app:layout_constraintStart_toEndOf="@+id/sub_ckbx_icon"
+            app:layout_constraintTop_toTopOf="@+id/sub_clay_ckbxs">
 
             <TextView
-                android:id="@+id/singUp_ckbx_title"
+                android:id="@+id/sub_ckbx_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
@@ -59,11 +59,11 @@
                 android:textColor="@color/text"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/signUp_ckbx_clay_details"
-                app:layout_constraintTop_toTopOf="@+id/signUp_ckbx_clay_details" />
+                app:layout_constraintStart_toStartOf="@+id/sub_ckbx_clay_details"
+                app:layout_constraintTop_toTopOf="@+id/sub_ckbx_clay_details" />
 
             <TextView
-                android:id="@+id/singUp_ckbx_description"
+                android:id="@+id/sub_ckbx_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="188dp"
@@ -72,11 +72,11 @@
                 android:textColor="@color/text"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/signUp_ckbx_clay_details"
-                app:layout_constraintTop_toBottomOf="@+id/singUp_ckbx_title" />
+                app:layout_constraintStart_toStartOf="@+id/sub_ckbx_clay_details"
+                app:layout_constraintTop_toBottomOf="@+id/sub_ckbx_title" />
 
             <TextView
-                android:id="@+id/singUp_ckbx_price"
+                android:id="@+id/sub_ckbx_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -87,8 +87,8 @@
                 android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/signUp_ckbx_clay_details"
-                app:layout_constraintTop_toBottomOf="@+id/singUp_ckbx_description" />
+                app:layout_constraintEnd_toEndOf="@+id/sub_ckbx_clay_details"
+                app:layout_constraintTop_toBottomOf="@+id/sub_ckbx_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

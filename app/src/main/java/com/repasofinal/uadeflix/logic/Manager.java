@@ -13,6 +13,7 @@ import com.repasofinal.uadeflix.backend.sso.SSO_Controller;
 import com.repasofinal.uadeflix.backend.sso.Response_SSO_Login;
 import com.repasofinal.uadeflix.backend.sso.Response_SSO_Logout;
 import com.repasofinal.uadeflix.backend.sso.Response_SSO_Register;
+import com.repasofinal.uadeflix.backend.suscriptions.Response_Subscripciones_CanViewFilm;
 import com.repasofinal.uadeflix.backend.suscriptions.Response_Subscriptions_Paquete;
 import com.repasofinal.uadeflix.backend.suscriptions.Subscriptions_Controller;
 import com.repasofinal.uadeflix.support.ActionV;
@@ -39,7 +40,6 @@ public class Manager {
                     String[] tokens = new String[2];
                     tokens[0] = body.getToken();
                     tokens[1] = response.headers().get("Set-Cookie");
-                    //tokens[1] = response.headers().get("Set-Cookie").split(";")[0].split("=")[1];
                     currentUser = new User(tokens);
 
                     SharedPreferences.Editor editor = MainActivity.getContext().getSharedPreferences("Uadeflix", MODE_PRIVATE).edit();
@@ -88,6 +88,7 @@ public class Manager {
                 Response_SSO_Register body = response.body();
                 if (body != null) {
                     Log.d("Response","User created");
+                    currentUser = newUser;
                     if(onStatusOk != null) { onStatusOk.Invoke(); }
                 } else {
                     Log.d("Response","User not created");
@@ -108,7 +109,6 @@ public class Manager {
                     Log.d("Response","User token refreshed");
                     String[] tokens = new String[2];
                     tokens[0] = body.getToken();
-                    //tokens[1] = response.headers().get("Set-Cookie");
                     tokens[1] = refreshToken;
                     currentUser = new User(tokens);
                     if(onStatusOk != null) { onStatusOk.Invoke(); }
@@ -177,15 +177,17 @@ public class Manager {
             }
         });
     }
-    public void CanViewCurrentMovie(ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
-        Subscriptions_Controller.CanViewFilm(currentUser, currentMovie).enqueue(new Callback<Boolean>() {
+    public void CanViewCurrentMovie(ActionV onStatusOk_canView, ActionV onStatusOk_canontView, ActionV onStatusError, ActionV onStatusFail) {
+        Subscriptions_Controller.CanViewFilm(currentUser, currentMovie).enqueue(new Callback<Response_Subscripciones_CanViewFilm>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+            public void onResponse(Call<Response_Subscripciones_CanViewFilm> call, Response<Response_Subscripciones_CanViewFilm> response) {
                 Log.d("Response",response.toString());
-                Boolean body = response.body();
+                Log.d("Response", currentUser.getToken());
+                Response_Subscripciones_CanViewFilm body = response.body();
                 if (body != null) {
-                    Log.d("Response","Response Ok: " + body);
-                    if(onStatusOk != null) { onStatusOk.Invoke(); }
+                    Log.d("Response","Response Ok: " + body.getPuede_ver());
+                    if(body.getPuede_ver()){ if(onStatusOk_canView != null) { onStatusOk_canView.Invoke(); } }
+                    else{ if(onStatusOk_canontView != null) { onStatusOk_canontView.Invoke(); } }
                 } else {
                     Log.d("Response","Response Not Ok");
                     if(onStatusError != null) { onStatusError.Invoke(); }
@@ -193,8 +195,28 @@ public class Manager {
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onFailure(Call<Response_Subscripciones_CanViewFilm> call, Throwable t) {
                 Log.d("Response","Fail to get response");
+                if(onStatusFail != null) { onStatusFail.Invoke(); }
+            }
+        });
+    }
+    public void Subscribe(int[] ids, ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
+        Subscriptions_Controller.Subscribe(currentUser, ids).enqueue(new Callback<String>() {
+            @Override public void onResponse(Call<String> call, Response<String> response) {
+                String body = response.body();
+                if (body != null) {
+                    Log.d("Response","Subscribed");
+                    if(onStatusOk != null) { onStatusOk.Invoke(); }
+                } else {
+                    Log.d("Response","Not Subscribed");
+                    Log.d("Response", response.toString());
+                    if(onStatusError != null) { onStatusError.Invoke(); }
+                }
+            }
+
+            @Override public void onFailure(Call<String> call, Throwable t) {
+                Log.d("Response","Fail to subscribe");
                 if(onStatusFail != null) { onStatusFail.Invoke(); }
             }
         });

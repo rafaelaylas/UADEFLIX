@@ -77,5 +77,5 @@ public class SignIn extends AppCompatActivity {
                 }
         );
     }
-    private void signUp() { startActivity(new Intent(SignIn.this, SignUp.class)); }
+    private void signUp() { startActivity(new Intent(SignIn.this, SignUp.class)); finish(); }
 }

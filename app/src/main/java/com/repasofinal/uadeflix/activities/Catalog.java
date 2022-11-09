@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.repasofinal.uadeflix.MainActivity;
 import com.repasofinal.uadeflix.R;
-import com.repasofinal.uadeflix.logic.Manager;
 import com.repasofinal.uadeflix.support.ActionV;
 import com.repasofinal.uadeflix.support.CatalogListAdapter;
 import com.repasofinal.uadeflix.support.Helper;
@@ -33,7 +32,7 @@ public class Catalog extends AppCompatActivity {
     private ConstraintLayout clay_loadingScreen;
     private TextView txt_user;
     private TextView tv_loading;
-    private ImageButton btn_loading;
+    private ImageButton btn_refresh;
 
     private ListView lview_catalog;
 
@@ -52,7 +51,7 @@ public class Catalog extends AppCompatActivity {
         clay_loadingScreen = (ConstraintLayout) findViewById(R.id.catalog_clay_loadingScreen);
         txt_user = (TextView) findViewById(R.id.catalog_txt_user);
         tv_loading = (TextView) findViewById(R.id.catalog_tv_loading);
-        btn_loading = (ImageButton) findViewById(R.id.catalog_btn_refresh);
+        btn_refresh = (ImageButton) findViewById(R.id.catalog_btn_refresh);
 
         lview_catalog = (ListView) findViewById(R.id.catalog_lview_catalog);
 
@@ -64,11 +63,11 @@ public class Catalog extends AppCompatActivity {
         clay_btnPassword.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { ChangePassword(); } });
         clay_btnSignOut.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { SignOut(); } });
         clay_closeMenu.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { CloseMenu(); } });
-        btn_loading.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { Refresh(); } });
+        btn_refresh.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { Refresh(); } });
 
         clay_menuContainer.setVisibility(View.GONE);
         clay_loadingScreen.setVisibility(View.GONE);
-        btn_loading.setVisibility(View.GONE);
+        btn_refresh.setVisibility(View.GONE);
 
         Refresh();
     }
@@ -78,19 +77,19 @@ public class Catalog extends AppCompatActivity {
         clay_loadingScreen.setVisibility(View.VISIBLE);
         MainActivity.manager.UpdateMovies(
                 new ActionV() { @Override public void Invoke() {
-                    btn_loading.setVisibility(View.GONE);
+                    btn_refresh.setVisibility(View.GONE);
                     UpdateCatalog();
                     clay_loadingScreen.setVisibility(View.GONE);
                 } },
                 new ActionV() { @Override public void Invoke() {
                     tv_loading.setText("Something went wrong with the server!");
-                    btn_loading.setVisibility(View.VISIBLE);
+                    btn_refresh.setVisibility(View.VISIBLE);
                     new Handler().postDelayed(new Runnable() { public void run() { clay_loadingScreen.setVisibility(View.GONE); } }, 3000);
                 } },
                 new ActionV() { @Override public void Invoke()
                 {
                     tv_loading.setText("Something went wrong! Please check your internet conection");
-                    btn_loading.setVisibility(View.VISIBLE);
+                    btn_refresh.setVisibility(View.VISIBLE);
                     new Handler().postDelayed(new Runnable() { public void run() { clay_loadingScreen.setVisibility(View.GONE); } }, 3000);
                 } }
         );
@@ -102,12 +101,7 @@ public class Catalog extends AppCompatActivity {
     }
     private void OpenMenu() { clay_menuContainer.setVisibility(View.VISIBLE); }
     private void CloseMenu() { clay_menuContainer.setVisibility(View.GONE); }
-    private void ChangePlan() {
-        MainActivity.manager.RefreshUser(MainActivity.manager.GetCurrentUser().getRefreshToken(),
-                new ActionV() { @Override public void Invoke() { } },
-                new ActionV() { @Override public void Invoke() { } },
-                new ActionV() { @Override public void Invoke() { } }
-        ); }
+    private void ChangePlan() { }
     private void ChangePaymentSettings() { startActivity(new Intent(Catalog.this, PaymentInfo.class)); }
     private void ChangePassword() { startActivity(new Intent(Catalog.this, ChangePassword.class)); }
     private void SignOut() {
@@ -117,6 +111,5 @@ public class Catalog extends AppCompatActivity {
                 new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } },
                 new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } }
         ); }
-
 
 }

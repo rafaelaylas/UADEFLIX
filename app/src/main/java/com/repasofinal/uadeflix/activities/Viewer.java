@@ -39,7 +39,7 @@ public class Viewer extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         //videoView.setVideoPath("http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4");
-        //Log.d("Debug", MainActivity.manager.GetCurrentMovie().getVideoSrc());
+        //Log.d("Response", MainActivity.manager.GetCurrentMovie().getVideoSrc());
         videoView.setVideoPath(MainActivity.manager.GetCurrentMovie().getVideoSrc());
 
         mediaController = new MediaController(this);

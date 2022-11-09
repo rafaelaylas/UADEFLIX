@@ -54,6 +54,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/details_clay_header">
 
+
+
         <ImageView
             android:id="@+id/details_iv_image"
             android:layout_width="356dp"
@@ -73,6 +75,18 @@
             app:srcCompat="@drawable/ic_play_circle"
             app:tint="@color/text" />
 
+        <TextView
+            android:id="@+id/details_txt_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/error"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <ScrollView
             android:id="@+id/details_sview_details"
             android:layout_width="match_parent"
@@ -90,7 +104,7 @@
                 app:layout_constraintTop_toBottomOf="@id/details_clay_header">
 
                 <TextView
-                    android:id="@+id/details_txt_titleLabel"
+                    android:id="@+id/details_tv_error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Title"
@@ -283,5 +297,34 @@
 
     </LinearLayout>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_clay_loadingScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/details_tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Loading..."
+            android:textColor="@color/text"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

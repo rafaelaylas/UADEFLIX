@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.repasofinal.uadeflix">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UADEFLIX"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.Subscriptions"
+            android:exported="false"
+            android:theme="@style/Theme.UADEFLIX.NoActionBar" />
         <activity
             android:name=".activities.ChangePassword"
             android:exported="false"
@@ -47,7 +52,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.UADEFLIX.NoActionBar" >
+            android:theme="@style/Theme.UADEFLIX.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

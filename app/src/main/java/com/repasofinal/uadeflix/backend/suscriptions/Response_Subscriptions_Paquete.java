@@ -12,6 +12,8 @@ public class Response_Subscriptions_Paquete {
     private String nombre;
     @SerializedName("descripcion")
     private String descripcion;
+    @SerializedName("full_image_path")
+    private String full_image_path;
     @SerializedName("precio")
     private String precio;
     @SerializedName("created_at")
@@ -24,9 +26,10 @@ public class Response_Subscriptions_Paquete {
     public int getId() { return id; }
     public String getNombre() { return nombre; }
     public String getDescripcion() { return descripcion; }
+    public String getImage() { return full_image_path; }
     public String getPrecio() { return precio; }
     public Date getCreated_at() { return created_at; }
     public Date getUpdated_at() { return updated_at; }
     public Date getDeleted_at() { return deleted_at; }
-    public Subscription ToSubscription() { return new Subscription(id, nombre, descripcion, precio); }
+    public Subscription ToSubscription() { return new Subscription(id, nombre, descripcion, full_image_path, precio); }
 }

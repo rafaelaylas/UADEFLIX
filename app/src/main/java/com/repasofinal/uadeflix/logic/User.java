@@ -18,8 +18,6 @@ public class User {
     private String phone;
     private String email;
     private String password;
-    private Card paymentInfo;
-    private Subscription[] suscriptions;
 
     public User(String[] tokens) {
         this.token = tokens[0];
@@ -38,14 +36,12 @@ public class User {
         this.email = email;
         this.password = password;
     }
-    public User(String name, String lastName, String phone, String email, String password, Card paymentInfo, Subscription[] plan) {
+    public User(String name, String lastName, String phone, String email, String password) {
         this.name = name;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.paymentInfo = paymentInfo;
-        this.suscriptions = plan;
     }
 
     public String getToken() { return token; }
@@ -55,13 +51,10 @@ public class User {
     public String getPhone() { return phone; }
     public String getEmail() { return email; }
     public String getPassword() { return password; }
-    public Card getPaymentInfo() { return paymentInfo; }
-    public Subscription[] getSuscriptions() { return suscriptions; }
 
     public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
     public void setExpirationDate(int date) { this.exp = new Date((long)(date-600)*1000); }
-    public Boolean CheckExpiration()
-    {
+    public Boolean CheckExpiration() {
         Log.d("Response","Exp Date: " + exp + "/ now: " + new Date());
         if(exp.before(new Date())) { return false; }
         return true;
