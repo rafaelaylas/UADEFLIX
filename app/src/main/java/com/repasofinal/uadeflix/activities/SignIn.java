@@ -38,8 +38,8 @@ public class SignIn extends AppCompatActivity {
         btn_signIn.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { signIn(et_email.getText().toString(), et_password.getText().toString()); } });
         btn_signUp.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View view) { signUp(); } });
 
-        et_email.setText("mobile.test@gmail.com");
-        et_password.setText("aA#1234567891");
+        //et_email.setText("mobile.test@gmail.com");
+        //et_password.setText("aA#1234567891");
 
         txt_message.setVisibility(View.GONE);
         clay_loadingScreen.setVisibility(View.GONE);

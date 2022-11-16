@@ -86,7 +86,7 @@ public class Subscriptions extends AppCompatActivity {
         if(MainActivity.manager.GetCurrentUser().getToken() == null) { SignIn(); }
         else { clay_menu.setVisibility(View.VISIBLE); }
 
-        initDev();
+        //initDev();
     }
 
     private void prevStep() { currentStep--; setStep(); }

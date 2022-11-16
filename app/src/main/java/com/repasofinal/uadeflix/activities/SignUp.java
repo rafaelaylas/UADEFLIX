@@ -54,7 +54,7 @@ public class SignUp extends AppCompatActivity {
         clay_userCreatedScreen.setVisibility(View.GONE);
         tv_error.setVisibility(View.GONE);
 
-        initDev();
+        //initDev();
     }
 
     private void initDev() {
