@@ -144,9 +144,6 @@ public class Manager {
                 if(onStatusFail != null) { onStatusFail.Invoke(); }
             }
         });
-
-
-        catalogs = StaticData.GetCatalogs();
     }
 
     public void SetCurrentMovie(Movie movie){ currentMovie = movie; }
@@ -221,6 +218,7 @@ public class Manager {
             }
         });
     }
+    public String GetPlanURL() { return "http://intap-suscripciones.herokuapp.com/public/loginByToken?token=" + currentUser.getToken(); }
 
     public void AutomaticTokenRefresh() {
         new Handler().postDelayed(new Runnable() { public void run() {

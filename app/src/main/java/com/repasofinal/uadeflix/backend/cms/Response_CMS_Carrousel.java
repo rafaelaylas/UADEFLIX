@@ -1,5 +1,7 @@
 package com.repasofinal.uadeflix.backend.cms;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 import com.repasofinal.uadeflix.logic.Catalog;
 import com.repasofinal.uadeflix.logic.Movie;
@@ -10,7 +12,7 @@ import java.util.List;
 public class Response_CMS_Carrousel {
     @SerializedName("title")
     private String title;
-    @SerializedName("contenidos")
+    @SerializedName("contents")
     private Response_CMS_Contenidos[] contenidos;
 
     public String getTitle() { return title; }

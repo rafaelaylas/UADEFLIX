@@ -41,7 +41,6 @@ public class CatalogListAdapter extends ArrayAdapter<Catalog> {
         View view = inflater.inflate(resource, null);
         Catalog catalog = items.get(position);
 
-
         TextView title = (TextView) view.findViewById(R.id.lviewCatalog_txt_title);
         title.setText(catalog.getTitle());
 

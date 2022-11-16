@@ -22,7 +22,7 @@ public class Response_CMS_Contenidos {
     private String writer;
     @SerializedName("genres")
     private Response_CMS_IdItem[] genres;
-    @SerializedName("MaturityRating")
+    @SerializedName("maturityRating")
     private Response_CMS_IdItem MaturityRating;
     @SerializedName("urlImage")
     private String urlImage;

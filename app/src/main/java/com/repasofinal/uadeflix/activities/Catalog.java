@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -101,7 +102,10 @@ public class Catalog extends AppCompatActivity {
     }
     private void OpenMenu() { clay_menuContainer.setVisibility(View.VISIBLE); }
     private void CloseMenu() { clay_menuContainer.setVisibility(View.GONE); }
-    private void ChangePlan() { }
+    private void ChangePlan() {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(MainActivity.manager.GetPlanURL()));
+        startActivity(browserIntent);
+    }
     private void ChangePaymentSettings() { startActivity(new Intent(Catalog.this, PaymentInfo.class)); }
     private void ChangePassword() { startActivity(new Intent(Catalog.this, ChangePassword.class)); }
     private void SignOut() {
@@ -111,5 +115,4 @@ public class Catalog extends AppCompatActivity {
                 new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } },
                 new ActionV() { @Override public void Invoke() { clay_loadingScreen.setVisibility(View.GONE); } }
         ); }
-
 }
