@@ -124,8 +124,6 @@ public class Manager {
         });
     }
     public User GetCurrentUser() { return currentUser; }
-    public Boolean UpdatePaymentInfo(Card newCard) { return true; }
-    public Boolean UpdatePassword(String newPassword) { return true; }
     public void UpdateMovies(ActionV onStatusOk, ActionV onStatusError, ActionV onStatusFail) {
         CMS_Controller.GetCarrouseles().enqueue(new Callback<Response_CMS_GetCarrouseles>() {
             @Override public void onResponse(Call<Response_CMS_GetCarrouseles> call, Response<Response_CMS_GetCarrouseles> response) {

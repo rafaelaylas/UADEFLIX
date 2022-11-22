@@ -68,6 +68,7 @@ public class Details extends AppCompatActivity {
         txt_description.setText(movie.getDescription());
         txt_year.setText(movie.getYear());
         txt_duration.setText(movie.getDuration());
+        txt_director.setText(movie.getDirector());
         txt_cast.setText(movie.getCast());
         txt_writer.setText(movie.getWriter());
         txt_genres.setText(movie.getGenre());
