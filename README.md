@@ -1,6 +1,4 @@
 # UADEFLIX
-Trabajo Practico IA
-
 
 TP Obligatorio de la materia Integracion de Aplicaciones / Desarrollo de aplicaciones II en UADE
 
